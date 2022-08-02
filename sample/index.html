@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+	Copyright (c) 2014-2022, CKSource Holding sp. z o.o. All rights reserved.
+	This file is licensed under the terms of the MIT License (see LICENSE.md).
+-->
+
+<html lang="en" dir="ltr">
+
+<head>
+  <title>CKEditor 5 InlineEditor build</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="https://c.cksource.com/a/1/logos/ckeditor5.png">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body data-editor="InlineEditor" data-collaboration="false" data-revision-history="false">
+  <main>
+    <div class="row row-editor">
+      <div class="editor-container">
+        <div class="editor">
+          <h2>Sample</h2>
+
+          <div data-type="data" data-value="222">
+            <p>222</p>
+            <p>222</p>
+            <p>222</p>
+          </div>
+          <p>This is an instance of the <a
+              href="https://ckeditor.com/docs/ckeditor5/latest/installation/advanced/alternative-setups/predefined-builds.html#inline-editor">inline
+              editor build</a>.</p>
+          ckeditor.js
+          <figure class="image">
+            <img src="../tests/manual/sample.jpg" alt="Autumn fields" />
+          </figure>
+
+          <p>You can use this sample to validate whether your <a
+              href="https://ckeditor.com/docs/ckeditor5/latest/installation/advanced/alternative-setups/custom-builds.html">custom
+              build</a> works fine.</p>
+          <div>
+            <span style="font-size: 20px;color: #F00">222</span>
+          </div>
+          <div
+            style="font-size:12pt;line-height:150%;margin:0pt;orphans:0;text-align:justify;text-indent:21pt;widows:0;">
+            <span style="font-family:宋体;"><span
+                style="font-size:12pt;">1、订立本基金合同的目的是保护投资人合法权益，明确基金合同当事人的权利义务，规范基金运作。</span></span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <button id="test">test</button>
+  <script src="../build/ckeditor.js"></script>
+  <script>InlineEditor
+      .create(document.querySelector('.editor'), {
+        htmlSupport: {
+          allow: [
+            {
+              name: /.+/,
+              attributes: true,
+              classes: true,
+              styles: true,
+            },
+          ],
+        },
+        fontSize: {
+          options: [
+            12, 14, 16, 18, 20, 22, 24, 26, 36, 42
+          ],
+          supportAllValues: true
+        },
+      })
+      .then(editor => {
+        window.editor = editor;
+
+        document.querySelector("#test").addEventListener("click", () => {
+          const { selection } = editor.model.document;
+          console.log("htmlSpan => ", selection.getAttribute("htmlSpan"));
+        });
+      })
+  </script>
+</body>
+
+</html>
